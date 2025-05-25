@@ -1,0 +1,26 @@
+[env]
+LISTEN_ADDR = ":8080"
+
+[vars]
+dist_linux = "dist/vps-control-linux-amd64"
+
+[tasks.build]
+description = "Build for the current OS"
+run = "go build -o dist/vps-control ."
+
+[tasks.run]
+description = "Run the app locally"
+run = "go run ."
+
+[tasks.build-linux]
+description = "Build for Linux"
+run = "GOOS=linux GOARCH=amd64 go build -o {{vars.dist_linux}} ."
+
+[tasks.deploy]
+description = "Deploy on home via SSH"
+depends = ["build-linux"]
+run = [
+    "ssh ubuntu 'sudo systemctl stop vps-control.service'",
+    "scp {{vars.dist_linux}} ubuntu:/mnt/data/vps-control/",
+    "ssh ubuntu 'chmod +x /mnt/data/vps-control/vps-control-linux-amd64; sudo systemctl start vps-control.service'",
+]

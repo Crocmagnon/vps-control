@@ -1,0 +1,5 @@
+[env]
+OVH_ENDPOINT = "ovh-eu"
+OVH_APPLICATION_KEY = "xx"
+OVH_APPLICATION_SECRET = "xx"
+OVH_CONSUMER_KEY = "xx"

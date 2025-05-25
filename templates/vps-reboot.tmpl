@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VPS List</title>
+</head>
+<body>
+{{- /*gotype: ovh-vps.RebootResponse*/ -}}
+<p>
+    Rebooting VPS... <br>
+    ID: {{.Id}} <br>
+    Date: {{.Date}} <br>
+    Progress: {{.Progress}}% <br>
+    State: {{.State}} <br>
+    Type: {{.Type}}
+</p>
+<p>
+    <a href="/">Home</a>
+</p>
+</body>
+</html>
